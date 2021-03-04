@@ -12,10 +12,11 @@ import androidx.appcompat.app.AppCompatActivity
 
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var presentation: SecondaryActivity
+
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
-
-
         //window.insetsController?.hide(WindowInsets.Type.statusBars())
 
         requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -37,17 +38,31 @@ class MainActivity : AppCompatActivity() {
         } else {
             window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         }
+
+        hideSystemUI();
+    }
+
+    private fun hideSystemUI() {
+        // Enables regular immersive mode.
+        // For "lean back" mode, remove SYSTEM_UI_FLAG_IMMERSIVE.
+        // Or for "sticky immersive," replace it with SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+        window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_IMMERSIVE
+                // Set the content to appear under the system bars so that the
+                // content doesn't resize when the system bars hide and show.
+                or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                // Hide the nav bar and status bar
+                or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                or View.SYSTEM_UI_FLAG_FULLSCREEN)
     }
 
     fun onClick(p0: View?) {
-
-
-
         val context: Context = p0?.context ?: return
 
         val displayManager = context.getSystemService(Context.DISPLAY_SERVICE) as DisplayManager
 
-        val presentationDisplays = displayManager.getDisplays(DisplayManager.DISPLAY_CATEGORY_PRESENTATION)
+        val presentationDisplays: Array<Display> = displayManager.getDisplays(DisplayManager.DISPLAY_CATEGORY_PRESENTATION)
 
         Toast.makeText(this, "I am View.OnClickListener Toast " + presentationDisplays.size, Toast.LENGTH_LONG).show()
 
@@ -56,8 +71,15 @@ class MainActivity : AppCompatActivity() {
             // giving the user a choice.  For this example, we simply choose the first display
             // which is the one the system recommends as the preferred presentation display.
             val display = presentationDisplays[0]
-            val presentation: Presentation = SecondaryActivity(context, display)
+
+            presentation = SecondaryActivity(context, display)
             presentation.show()
         }
 
-    }}
+    }
+
+    fun onClick2(p0: View?) {
+        presentation.setText("Hello World")
+        //runOnUiThread(Runnable { presentation.setText("Hello World") })
+    }
+}
