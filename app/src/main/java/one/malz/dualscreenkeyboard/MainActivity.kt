@@ -61,6 +61,8 @@ class MainActivity : AppCompatActivity() {
                 presentation.setText(text)
             }
         })
+
+        init(view.context)
     }
 
     private fun hideSystemUI() {
@@ -81,7 +83,11 @@ class MainActivity : AppCompatActivity() {
     fun onClick(p0: View?) {
         val context: Context = p0?.context ?: return
 
-        val displayManager = context.getSystemService(Context.DISPLAY_SERVICE) as DisplayManager
+        init(context)
+    }
+
+    private fun init(context: Context) {
+        val displayManager = context.getSystemService(DISPLAY_SERVICE) as DisplayManager
 
         val presentationDisplays: Array<Display> = displayManager.getDisplays(DisplayManager.DISPLAY_CATEGORY_PRESENTATION)
 
@@ -99,7 +105,6 @@ class MainActivity : AppCompatActivity() {
             presentation.setDarkTheme(theme)
             presentation.show()
         }
-
     }
 
     fun onClick2(p0: View?) {
