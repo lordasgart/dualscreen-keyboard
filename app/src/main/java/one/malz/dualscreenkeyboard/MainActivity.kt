@@ -10,21 +10,18 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 
-
 class MainActivity : AppCompatActivity() {
 
     private lateinit var presentation: SecondaryActivity
 
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
-        //window.insetsController?.hide(WindowInsets.Type.statusBars())
 
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         super.onCreate(savedInstanceState)
-
         requestWindowFeature(Window.FEATURE_NO_TITLE)
-        setContentView(R.layout.activity_main)
 
+        setContentView(R.layout.activity_main)
 
         //Set full screen after setting layout content
         @Suppress("DEPRECATION")
@@ -72,7 +69,7 @@ class MainActivity : AppCompatActivity() {
             // which is the one the system recommends as the preferred presentation display.
             val display = presentationDisplays[0]
 
-            presentation = SecondaryActivity(context, display)
+            presentation = SecondaryActivity(context, display, 1)
             presentation.show()
         }
 
