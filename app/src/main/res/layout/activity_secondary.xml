@@ -14,6 +14,8 @@
         android:gravity="start|top"
         android:inputType="textMultiLine"
         android:text=""
+        android:fontFamily="monospace"
+        android:textSize="13pt"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

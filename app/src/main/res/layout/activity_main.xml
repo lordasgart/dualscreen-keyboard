@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context=".MainActivity">
 <!--    <TextView-->
 <!--        android:layout_width="wrap_content"-->
@@ -43,6 +44,7 @@
 <!--        app:layout_constraintTop_toTopOf="parent" />-->
 
     <EditText
+        android:layout_marginTop="16dp"
         android:id="@+id/editTextTextMultiLine"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

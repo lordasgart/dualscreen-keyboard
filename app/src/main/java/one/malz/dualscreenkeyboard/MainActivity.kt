@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import one.malz.dualscreenkeyboard.databinding.ActivityMainBinding
+import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
 
@@ -108,9 +109,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onClick2(p0: View?) {
+try {
+    val text = binding.editTextTextMultiLine.text.toString()
+    presentation.setText(text)
+    //runOnUiThread(Runnable { presentation.setText("Hello World") })
+}
+catch (ex: Exception)
+{
 
-        val text = binding.editTextTextMultiLine.text.toString()
-        presentation.setText(text)
-        //runOnUiThread(Runnable { presentation.setText("Hello World") })
+}
+
     }
 }
