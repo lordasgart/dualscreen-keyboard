@@ -1,27 +1,36 @@
 package one.malz.dualscreenkeyboard
 
-import android.app.Presentation
 import android.content.Context
 import android.hardware.display.DisplayManager
 import android.os.Build
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.*
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import one.malz.dualscreenkeyboard.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var presentation: SecondaryActivity
+    private lateinit var binding: ActivityMainBinding
 
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
 
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         super.onCreate(savedInstanceState)
-        requestWindowFeature(Window.FEATURE_NO_TITLE)
 
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
+        setTitle("Dual Screen Keyboard Editor")
+
+        //requestWindowFeature(Window.FEATURE_NO_TITLE)
+
+        //setContentView(R.layout.activity_main)
 
         //Set full screen after setting layout content
         @Suppress("DEPRECATION")
@@ -37,6 +46,21 @@ class MainActivity : AppCompatActivity() {
         }
 
         hideSystemUI();
+
+        binding.editTextTextMultiLine.addTextChangedListener(object : TextWatcher {
+
+            override fun afterTextChanged(s: Editable) {}
+
+            override fun beforeTextChanged(s: CharSequence, start: Int,
+                                           count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence, start: Int,
+                                       before: Int, count: Int) {
+                val text = binding.editTextTextMultiLine.text.toString()
+                presentation.setText(text)
+            }
+        })
     }
 
     private fun hideSystemUI() {
@@ -69,14 +93,19 @@ class MainActivity : AppCompatActivity() {
             // which is the one the system recommends as the preferred presentation display.
             val display = presentationDisplays[0]
 
-            presentation = SecondaryActivity(context, display, 1)
+            //val theme = getTheme().
+
+            presentation = SecondaryActivity(context, display, 0)
+            presentation.setDarkTheme(theme)
             presentation.show()
         }
 
     }
 
     fun onClick2(p0: View?) {
-        presentation.setText("Hello World")
+
+        val text = binding.editTextTextMultiLine.text.toString()
+        presentation.setText(text)
         //runOnUiThread(Runnable { presentation.setText("Hello World") })
     }
 }
