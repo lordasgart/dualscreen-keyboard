@@ -20,31 +20,31 @@ class MainActivity : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
-
-        requestWindowFeature(Window.FEATURE_NO_TITLE)
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+        //requestWindowFeature(Window.FEATURE_NO_TITLE)
         super.onCreate(savedInstanceState)
-
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
+
+        //window.requestFeature(Window.FEATURE_NO_TITLE);
         setContentView(view)
-        setTitle("Dual Screen Keyboard Editor")
 
         //requestWindowFeature(Window.FEATURE_NO_TITLE)
 
         //setContentView(R.layout.activity_main)
 
         //Set full screen after setting layout content
-        @Suppress("DEPRECATION")
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            val controller = window.insetsController
-
-            if(controller != null) {
-                controller.hide(WindowInsets.Type.statusBars() or WindowInsets.Type.navigationBars())
-                controller.systemBarsBehavior = WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
-            }
-        } else {
-            window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
-        }
+//        @Suppress("DEPRECATION")
+//        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+//            val controller = window.insetsController
+//
+//            if(controller != null) {
+//                controller.hide(WindowInsets.Type.statusBars() or WindowInsets.Type.navigationBars())
+//                controller.systemBarsBehavior = WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+//            }
+//        } else {
+//            window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+//        }
 
         hideSystemUI();
 
