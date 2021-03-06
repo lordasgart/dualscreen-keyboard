@@ -50,6 +50,8 @@
         android:background="#000000"
         android:inputType="textMultiLine"
         android:text=""
+        android:textSize="5pt"
+        android:fontFamily="monospace"
         android:textColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="56dp"
