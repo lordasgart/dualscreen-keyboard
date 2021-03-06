@@ -28,6 +28,8 @@ class SecondaryActivity(outerContext: Context?, display: Display?, theme: Int) :
         binding.editTextTextMultiLine.setTextColor(Color.WHITE);
 
         hideSystemUI()
+
+        binding.editTextTextMultiLine.requestFocus()
     }
 
     private fun hideSystemUI() {
@@ -45,9 +47,10 @@ class SecondaryActivity(outerContext: Context?, display: Display?, theme: Int) :
                 or View.SYSTEM_UI_FLAG_FULLSCREEN)
     }
 
-    fun setText(s: String) {
+    fun setText(s: String, selectionStart: Int) {
         try {
             binding.editTextTextMultiLine.setText(s)
+            binding.editTextTextMultiLine.setSelection(selectionStart)
         }
         catch (ex: Exception) {
             print(ex.message)

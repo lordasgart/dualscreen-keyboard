@@ -1,6 +1,5 @@
 package one.malz.dualscreenkeyboard
 
-import android.R.string
 import android.content.Context
 import android.content.Intent
 import android.hardware.display.DisplayManager
@@ -13,7 +12,6 @@ import android.view.*
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.text.set
 import one.malz.dualscreenkeyboard.databinding.ActivityMainBinding
 import java.io.*
 import java.net.URLEncoder
@@ -71,10 +69,13 @@ class MainActivity : AppCompatActivity() {
                                        before: Int, count: Int) {
                 if (hasAdditionalDisplays) {
                     val text = binding.editTextTextMultiLine.text.toString()
-                    presentation.setText(text)
+                    val selectionStart = binding.editTextTextMultiLine.selectionStart
+                    presentation.setText(text, selectionStart)
                 }
             }
         })
+
+        binding.editTextTextMultiLine.requestFocus()
     }
 
     @RequiresApi(Build.VERSION_CODES.R)
@@ -130,7 +131,8 @@ class MainActivity : AppCompatActivity() {
     fun onClick2(p0: View?) {
 try {
     val text = binding.editTextTextMultiLine.text.toString()
-    presentation.setText(text)
+    val selectionStart = binding.editTextTextMultiLine.selectionStart
+    presentation.setText(text, selectionStart)
     //runOnUiThread(Runnable { presentation.setText("Hello World") })
 }
 catch (ex: Exception)
