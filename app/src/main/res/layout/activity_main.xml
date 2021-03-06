@@ -46,11 +46,13 @@
     <TableRow>
     <EditText
         android:layout_marginTop="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
         android:id="@+id/editTextTextMultiLine"
         android:background="#000000"
         android:inputType="textMultiLine"
         android:text=""
-        android:textSize="5pt"
+        android:textSize="8pt"
         android:fontFamily="monospace"
         android:textColor="@color/white"
         android:layout_width="match_parent"
@@ -103,6 +105,17 @@ android:onClick="onClickSave"
                 android:layout_weight="1"
                 android:layout_margin="0dp"
                 android:onClick="onClickLoad"
+                ></Button>
+
+            <Button
+                android:text="WhatsApp"
+                android:backgroundTint="#232323"
+                android:textColor="#e0e0e0"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="0dp"
+                android:layout_weight="1"
+                android:onClick="onClickWhatsApp"
                 ></Button>
         </LinearLayout>
     </TableRow>

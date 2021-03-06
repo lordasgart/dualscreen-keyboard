@@ -2,6 +2,7 @@ package one.malz.dualscreenkeyboard
 
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.hardware.display.DisplayManager
 import android.net.Uri
 import android.os.Build
@@ -178,5 +179,21 @@ catch (ex: Exception)
         //runOnUiThread(Runnable {
         //    binding.editTextTextMultiLine.setText()
         //})
+    }
+
+    fun onClickWhatsApp(view: View) {
+        val pm = this@MainActivity.packageManager
+        try {
+            val waIntent = Intent(Intent.ACTION_SEND);
+            waIntent.setType("text/plain");
+            val text = binding.editTextTextMultiLine.text.toString()
+            val info = pm.getPackageInfo("com.whatsapp", PackageManager.GET_META_DATA);
+            waIntent.setPackage("com.whatsapp");
+            waIntent.putExtra(Intent.EXTRA_TEXT, text);
+            startActivity(Intent.createChooser(waIntent, "Share with"));
+        } catch (e: PackageManager.NameNotFoundException) {
+           Toast.makeText(this@MainActivity, "WhatsApp not Installed", Toast.LENGTH_SHORT)
+                   .show();
+        }
     }
 }
