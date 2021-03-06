@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<FRAME GUID="2FB25471-B62C-4EE6-BD43-F819C095ACF8" FORMAT="0000" APP_VERSION="2.2.0.8" CHECKSUM="2F8023FF5EF42755">
-  <PROJECT FORMAT="1.00" NAME="dualscreen-keyboard" AUTHOR="lordasgart" CREATED="2021.03.06 12:02:31" MODIFIED="2021.03.06 12:08:36">
+<FRAME GUID="2FB25471-B62C-4EE6-BD43-F819C095ACF8" FORMAT="0000" APP_VERSION="2.2.0.8" CHECKSUM="F7AB509F3A990122">
+  <PROJECT FORMAT="1.00" NAME="dualscreen-keyboard" AUTHOR="lordasgart" CREATED="2021.03.06 12:02:31" MODIFIED="2021.03.06 12:15:18">
     <DIAGRAMS>
-      <DIAGRAM FORMAT="1.00" ID="0" NAME="MainActivity" CREATED="2021.03.06 12:02:43" MODIFIED="2021.03.06 12:08:36">
-        <LAYOUT FORMAT="1.00" COLUMNS="4" ROWS="11">
+      <DIAGRAM FORMAT="1.00" ID="0" NAME="MainActivity" CREATED="2021.03.06 12:02:43" MODIFIED="2021.03.06 12:15:18">
+        <LAYOUT FORMAT="1.00" COLUMNS="6" ROWS="12">
           <ENTRIES>
             <ENTRY COLUMN="0" ROW="3">
               <FIGURE SUBTYPE="PapInput" FORMAT="1.00" ID="22">
@@ -25,62 +25,117 @@
                 <TEXT><![CDATA["Translate"]]></TEXT>
               </FIGURE>
             </ENTRY>
-            <ENTRY COLUMN="2" ROW="0" ANCHOR="True">
-              <FIGURE SUBTYPE="PapTitle" FORMAT="1.00" ID="0">
-                <TEXT><![CDATA[MainActivity]]></TEXT>
-              </FIGURE>
-            </ENTRY>
-            <ENTRY COLUMN="2" ROW="1">
-              <FIGURE SUBTYPE="PapStart" FORMAT="1.00" ID="1">
-                <TEXT><![CDATA[Start]]></TEXT>
-              </FIGURE>
-            </ENTRY>
-            <ENTRY COLUMN="2" ROW="2">
-              <FIGURE SUBTYPE="PapModule" FORMAT="1.00" ID="4">
-                <TEXT><![CDATA[SecondaryActivityBottomBar]]></TEXT>
-              </FIGURE>
-            </ENTRY>
             <ENTRY COLUMN="2" ROW="3">
-              <FIGURE SUBTYPE="PapInput" FORMAT="1.00" ID="6">
-                <TEXT><![CDATA["Search"]]></TEXT>
+              <FIGURE SUBTYPE="PapInput" FORMAT="1.00" ID="30">
+                <TEXT><![CDATA[Share]]></TEXT>
               </FIGURE>
             </ENTRY>
             <ENTRY COLUMN="2" ROW="4">
-              <FIGURE SUBTYPE="PapCondition" FORMAT="1.00" ID="8">
+              <FIGURE SUBTYPE="PapCondition" FORMAT="1.00" ID="31">
                 <TEXT><![CDATA[?]]></TEXT>
               </FIGURE>
             </ENTRY>
             <ENTRY COLUMN="2" ROW="5">
+              <FIGURE SUBTYPE="PapInput" FORMAT="1.00" ID="32">
+                <TEXT><![CDATA[WhatsApp]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="2" ROW="6">
+              <FIGURE SUBTYPE="PapInput" FORMAT="1.00" ID="33">
+                <TEXT><![CDATA[Slack]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="2" ROW="7">
+              <FIGURE SUBTYPE="PapInput" FORMAT="1.00" ID="34">
+                <TEXT><![CDATA[Teams]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="2" ROW="8">
+              <FIGURE SUBTYPE="PapInput" FORMAT="1.00" ID="35">
+                <TEXT><![CDATA[E-Mail]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="3" ROW="3">
+              <FIGURE SUBTYPE="PapInput" FORMAT="1.00" ID="25">
+                <TEXT><![CDATA[Save]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="3" ROW="4">
+              <FIGURE SUBTYPE="PapCondition" FORMAT="1.00" ID="26">
+                <TEXT><![CDATA[?]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="3" ROW="5">
+              <FIGURE SUBTYPE="PapInput" FORMAT="1.00" ID="27">
+                <TEXT><![CDATA[Joplin]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="3" ROW="6">
+              <FIGURE SUBTYPE="PapInput" FORMAT="1.00" ID="29">
+                <TEXT><![CDATA[Nextcloud]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="3" ROW="7">
+              <FIGURE SUBTYPE="PapInput" FORMAT="1.00" ID="28">
+                <TEXT><![CDATA[File]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="4" ROW="0" ANCHOR="True">
+              <FIGURE SUBTYPE="PapTitle" FORMAT="1.00" ID="0">
+                <TEXT><![CDATA[MainActivity]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="4" ROW="1">
+              <FIGURE SUBTYPE="PapStart" FORMAT="1.00" ID="1">
+                <TEXT><![CDATA[Start]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="4" ROW="2">
+              <FIGURE SUBTYPE="PapModule" FORMAT="1.00" ID="4">
+                <TEXT><![CDATA[SecondaryActivityBottomBar]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="4" ROW="3">
+              <FIGURE SUBTYPE="PapInput" FORMAT="1.00" ID="6">
+                <TEXT><![CDATA["Search"]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="4" ROW="4">
+              <FIGURE SUBTYPE="PapCondition" FORMAT="1.00" ID="8">
+                <TEXT><![CDATA[?]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="4" ROW="5">
               <FIGURE SUBTYPE="PapInput" FORMAT="1.00" ID="10">
                 <TEXT><![CDATA[Google]]></TEXT>
               </FIGURE>
             </ENTRY>
-            <ENTRY COLUMN="2" ROW="6">
+            <ENTRY COLUMN="4" ROW="7">
               <FIGURE SUBTYPE="PapInput" FORMAT="1.00" ID="12">
                 <TEXT><![CDATA[Ecosia]]></TEXT>
               </FIGURE>
             </ENTRY>
-            <ENTRY COLUMN="2" ROW="7">
+            <ENTRY COLUMN="4" ROW="8">
               <FIGURE SUBTYPE="PapInput" FORMAT="1.00" ID="13">
                 <TEXT><![CDATA[Wikipedia]]></TEXT>
               </FIGURE>
             </ENTRY>
-            <ENTRY COLUMN="2" ROW="8">
+            <ENTRY COLUMN="4" ROW="9">
               <FIGURE SUBTYPE="PapInput" FORMAT="1.00" ID="14">
                 <TEXT><![CDATA[Jira]]></TEXT>
               </FIGURE>
             </ENTRY>
-            <ENTRY COLUMN="2" ROW="9">
+            <ENTRY COLUMN="4" ROW="10">
               <FIGURE SUBTYPE="PapInput" FORMAT="1.00" ID="15">
                 <TEXT><![CDATA[Confluence]]></TEXT>
               </FIGURE>
             </ENTRY>
-            <ENTRY COLUMN="2" ROW="10">
+            <ENTRY COLUMN="4" ROW="11">
               <FIGURE SUBTYPE="PapEnd" FORMAT="1.00" ID="2">
                 <TEXT><![CDATA[Ende]]></TEXT>
               </FIGURE>
             </ENTRY>
-            <ENTRY COLUMN="3" ROW="3">
+            <ENTRY COLUMN="5" ROW="3">
               <FIGURE SUBTYPE="PapInput" FORMAT="1.00" ID="21">
                 <TEXT><![CDATA["Copy All"]]></TEXT>
               </FIGURE>
