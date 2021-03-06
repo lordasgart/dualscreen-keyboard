@@ -1,7 +1,10 @@
 package one.malz.dualscreenkeyboard
 
+import android.R.string
 import android.content.Context
+import android.content.Intent
 import android.hardware.display.DisplayManager
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.text.Editable
@@ -10,11 +13,15 @@ import android.view.*
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.text.set
 import one.malz.dualscreenkeyboard.databinding.ActivityMainBinding
-import java.lang.Exception
+import java.io.*
+import java.net.URLEncoder
+
 
 class MainActivity : AppCompatActivity() {
 
+    private var hasAdditionalDisplays: Boolean = false
     private lateinit var presentation: SecondaryActivity
     private lateinit var binding: ActivityMainBinding
 
@@ -48,6 +55,10 @@ class MainActivity : AppCompatActivity() {
 
         hideSystemUI();
 
+
+
+        init(view.context)
+
         binding.editTextTextMultiLine.addTextChangedListener(object : TextWatcher {
 
             override fun afterTextChanged(s: Editable) {}
@@ -58,13 +69,20 @@ class MainActivity : AppCompatActivity() {
 
             override fun onTextChanged(s: CharSequence, start: Int,
                                        before: Int, count: Int) {
-                val text = binding.editTextTextMultiLine.text.toString()
-                presentation.setText(text)
+                if (hasAdditionalDisplays) {
+                    val text = binding.editTextTextMultiLine.text.toString()
+                    presentation.setText(text)
+                }
             }
         })
-
-        init(view.context)
     }
+
+    @RequiresApi(Build.VERSION_CODES.R)
+    override fun onResume() {
+        super.onResume()
+        hideSystemUI()
+    }
+
 
     private fun hideSystemUI() {
         // Enables regular immersive mode.
@@ -95,6 +113,7 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(this, "I am View.OnClickListener Toast " + presentationDisplays.size, Toast.LENGTH_LONG).show()
 
         if (presentationDisplays.isNotEmpty()) {
+            hasAdditionalDisplays = true
             // If there is more than one suitable presentation display, then we could consider
             // giving the user a choice.  For this example, we simply choose the first display
             // which is the one the system recommends as the preferred presentation display.
@@ -119,5 +138,43 @@ catch (ex: Exception)
 
 }
 
+    }
+
+    fun onClickSearch(view: View) {
+        val query = binding.editTextTextMultiLine.text.toString()
+        val escapedQuery: String = URLEncoder.encode(query, "UTF-8")
+        val uri: Uri = Uri.parse("https://www.google.com/search?q=$escapedQuery")
+        val intent = Intent(Intent.ACTION_VIEW, uri)
+        startActivity(intent)
+
+    }
+
+    fun onClickSave(view: View) {
+        val text = binding.editTextTextMultiLine.text.toString()
+        val dataFile = File((this as Context).getExternalFilesDir(null), "dualscreen-keyboard.txt")
+        if (!dataFile.exists()) dataFile.createNewFile()
+
+        val writer = BufferedWriter(FileWriter(dataFile, false))
+        writer.write(text)
+        writer.close()
+    }
+
+    fun onClickLoad(view: View) {
+        val dataFile = File((this as Context).getExternalFilesDir(null), "dualscreen-keyboard.txt")
+        if (!dataFile.exists()) return
+        val stringBuilder = StringBuilder()
+
+        dataFile.forEachLine { stringBuilder.appendln(it) }
+
+
+        val text = stringBuilder.toString()
+
+        binding.editTextTextMultiLine.setText(text)
+        //presentation.setText("test")
+        //binding.editTextTextMultiLine.text =  Editable.Factory.getInstance().newEditable(text)
+
+        //runOnUiThread(Runnable {
+        //    binding.editTextTextMultiLine.setText()
+        //})
     }
 }
