@@ -197,7 +197,7 @@ catch (ex: Exception)
         }
     }
 
-    fun onClickShare() {
+    fun onClickShare(view: View) {
         val sendIntent: Intent = Intent().apply {
             action = Intent.ACTION_SEND
             putExtra(Intent.EXTRA_TEXT, binding.editTextTextMultiLine.text.toString())
