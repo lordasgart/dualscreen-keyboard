@@ -108,15 +108,14 @@ android:onClick="onClickSave"
                 ></Button>
 
             <Button
-                android:text="WhatsApp"
-                android:backgroundTint="#232323"
-                android:textColor="#e0e0e0"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="0dp"
                 android:layout_weight="1"
-                android:onClick="onClickWhatsApp"
-                ></Button>
+                android:backgroundTint="#232323"
+                android:onClick="onClickShare"
+                android:text="Share"
+                android:textColor="#e0e0e0"></Button>
         </LinearLayout>
     </TableRow>
 

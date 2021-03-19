@@ -196,4 +196,15 @@ catch (ex: Exception)
                    .show();
         }
     }
+
+    fun onClickShare() {
+        val sendIntent: Intent = Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_TEXT, binding.editTextTextMultiLine.text.toString())
+            type = "text/plain"
+        }
+
+        val shareIntent = Intent.createChooser(sendIntent, null)
+        startActivity(shareIntent)
+    }
 }
