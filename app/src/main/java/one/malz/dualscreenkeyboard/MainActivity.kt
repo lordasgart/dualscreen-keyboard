@@ -17,55 +17,26 @@ import one.malz.dualscreenkeyboard.databinding.ActivityMainBinding
 import java.io.*
 import java.net.URLEncoder
 
-
 class MainActivity : AppCompatActivity() {
 
     private var hasAdditionalDisplays: Boolean = false
+
     private lateinit var presentation: SecondaryActivity
     private lateinit var binding: ActivityMainBinding
 
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
-        //requestWindowFeature(Window.FEATURE_NO_TITLE)
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
-
-        //window.requestFeature(Window.FEATURE_NO_TITLE);
         setContentView(view)
-
-        //requestWindowFeature(Window.FEATURE_NO_TITLE)
-
-        //setContentView(R.layout.activity_main)
-
-        //Set full screen after setting layout content
-//        @Suppress("DEPRECATION")
-//        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-//            val controller = window.insetsController
-//
-//            if(controller != null) {
-//                controller.hide(WindowInsets.Type.statusBars() or WindowInsets.Type.navigationBars())
-//                controller.systemBarsBehavior = WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
-//            }
-//        } else {
-//            window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
-//        }
-
-        hideSystemUI();
-
-
-
+        hideSystemUI()
         init(view.context)
-
         binding.editTextTextMultiLine.addTextChangedListener(object : TextWatcher {
-
             override fun afterTextChanged(s: Editable) {}
-
             override fun beforeTextChanged(s: CharSequence, start: Int,
-                                           count: Int, after: Int) {
-            }
-
+                                           count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int,
                                        before: Int, count: Int) {
                 if (hasAdditionalDisplays) {
@@ -75,7 +46,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
-
         binding.editTextTextMultiLine.requestFocus()
     }
 
@@ -84,7 +54,6 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
         hideSystemUI()
     }
-
 
     private fun hideSystemUI() {
         // Enables regular immersive mode.
@@ -103,26 +72,19 @@ class MainActivity : AppCompatActivity() {
 
     fun onClick(p0: View?) {
         val context: Context = p0?.context ?: return
-
         init(context)
     }
 
     private fun init(context: Context) {
         val displayManager = context.getSystemService(DISPLAY_SERVICE) as DisplayManager
-
         val presentationDisplays: Array<Display> = displayManager.getDisplays(DisplayManager.DISPLAY_CATEGORY_PRESENTATION)
-
         Toast.makeText(this, "I am View.OnClickListener Toast " + presentationDisplays.size, Toast.LENGTH_LONG).show()
-
         if (presentationDisplays.isNotEmpty()) {
             hasAdditionalDisplays = true
             // If there is more than one suitable presentation display, then we could consider
             // giving the user a choice.  For this example, we simply choose the first display
             // which is the one the system recommends as the preferred presentation display.
             val display = presentationDisplays[0]
-
-            //val theme = getTheme().
-
             presentation = SecondaryActivity(context, display, 0)
             presentation.setDarkTheme(theme)
             presentation.show()
@@ -130,17 +92,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onClick2(p0: View?) {
-try {
-    val text = binding.editTextTextMultiLine.text.toString()
-    val selectionStart = binding.editTextTextMultiLine.selectionStart
-    presentation.setText(text, selectionStart)
-    //runOnUiThread(Runnable { presentation.setText("Hello World") })
-}
-catch (ex: Exception)
-{
-
-}
-
+        try {
+            val text = binding.editTextTextMultiLine.text.toString()
+            val selectionStart = binding.editTextTextMultiLine.selectionStart
+            presentation.setText(text, selectionStart)            
+        }
+        catch (ex: Exception) {
+        }
     }
 
     fun onClickSearch(view: View) {
@@ -149,14 +107,14 @@ catch (ex: Exception)
         val uri: Uri = Uri.parse("https://www.google.com/search?q=$escapedQuery")
         val intent = Intent(Intent.ACTION_VIEW, uri)
         startActivity(intent)
-
     }
 
     fun onClickSave(view: View) {
         val text = binding.editTextTextMultiLine.text.toString()
         val dataFile = File((this as Context).getExternalFilesDir(null), "dualscreen-keyboard.txt")
-        if (!dataFile.exists()) dataFile.createNewFile()
-
+        if (!dataFile.exists()) {
+            dataFile.createNewFile()
+        }
         val writer = BufferedWriter(FileWriter(dataFile, false))
         writer.write(text)
         writer.close()
@@ -164,21 +122,15 @@ catch (ex: Exception)
 
     fun onClickLoad(view: View) {
         val dataFile = File((this as Context).getExternalFilesDir(null), "dualscreen-keyboard.txt")
-        if (!dataFile.exists()) return
+        if (!dataFile.exists()) {
+            return
+        }
         val stringBuilder = StringBuilder()
-
-        dataFile.forEachLine { stringBuilder.appendln(it) }
-
-
+        dataFile.forEachLine { 
+            stringBuilder.appendln(it) 
+        }
         val text = stringBuilder.toString()
-
-        binding.editTextTextMultiLine.setText(text)
-        //presentation.setText("test")
-        //binding.editTextTextMultiLine.text =  Editable.Factory.getInstance().newEditable(text)
-
-        //runOnUiThread(Runnable {
-        //    binding.editTextTextMultiLine.setText()
-        //})
+        binding.editTextTextMultiLine.setText(text)        
     }
 
     fun onClickWhatsApp(view: View) {
@@ -203,7 +155,6 @@ catch (ex: Exception)
             putExtra(Intent.EXTRA_TEXT, binding.editTextTextMultiLine.text.toString())
             type = "text/plain"
         }
-
         val shareIntent = Intent.createChooser(sendIntent, null)
         startActivity(shareIntent)
     }
